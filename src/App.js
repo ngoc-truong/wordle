@@ -1,13 +1,29 @@
 import { useState, useEffect } from "react";
 
 function App() {
-  const [word, setWord] = useState("");
+  const [targetWord, setTargetWord] = useState("eimer");
+  const [guess, setGuess] = useState("");
+  const [numOfGuesses, setNumOfGuesses] = useState(0);
 
-  useEffect(() => {
-    setWord("Moin");
-  }, []);
+  const handleWordSubmit = (event) => {
+    event.preventDefault();
+  };
 
-  return <div className="App">{word}</div>;
+  const changeGuess = (event) => {
+    setGuess(event.target.value.toUpperCase());
+  };
+
+  return (
+    <div className="App">
+      <p>Number of guesses: {numOfGuesses}</p>
+      <p>Your guess: {guess}</p>
+      <p>Target word: {targetWord.toUpperCase()}</p>
+      <form onSubmit={handleWordSubmit}>
+        Your word: <input value={guess} onChange={changeGuess}></input>
+        <button>Submit</button>
+      </form>
+    </div>
+  );
 }
 
 export default App;
